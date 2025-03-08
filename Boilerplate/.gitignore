@@ -1,0 +1,29 @@
+# Ignorar arquivos de compilação do .NET
+bin/
+obj/
+
+# Ignorar arquivos do Visual Studio
+.vs/
+.vscode/
+.idea/
+
+# Ignorar arquivos de configuração do sistema operacional
+.DS_Store          # macOS
+Thumbs.db          # Windows
+
+# Ignorar pacotes NuGet
+*.nupkg
+packages/
+
+# Ignorar arquivos temporários do usuário
+*.user
+*.userosscache
+*.suo
+*.sln.docstates
+
+# Ignorar arquivos de configuração do .NET
+project.lock.json
+project.fragment.lock.json
+
+# Ignorar diretórios de dependências do .NET
+/aspnetcore/
