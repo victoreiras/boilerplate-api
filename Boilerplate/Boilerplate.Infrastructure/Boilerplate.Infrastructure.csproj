@@ -13,4 +13,8 @@
     <Folder Include="Persistence\Sql\Respositories\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Boilerplate.Domain\Boilerplate.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

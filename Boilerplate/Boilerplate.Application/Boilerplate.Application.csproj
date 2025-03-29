@@ -11,4 +11,8 @@
     <Folder Include="Usecases\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Boilerplate.Domain\Boilerplate.Domain.csproj" />
+  </ItemGroup>
+
 </Project>
