@@ -1,6 +1,5 @@
 using Boilerplate.Application.Dtos;
 using Boilerplate.Application.Usecases;
-using Boilerplate.Domain.Enums;
 using Boilerplate.Infrastructure.Repositories;
 
 namespace Boilerplate.Test.Unit.Application.Usecases;

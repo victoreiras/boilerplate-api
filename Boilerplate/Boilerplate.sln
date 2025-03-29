@@ -20,19 +20,19 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4 - Infrastructure", "4 - I
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3 - Domain", "3 - Domain", "{C0DAAA2E-DFCF-4A0A-BF86-524639C23C27}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Boilerplate.Domain", "Boilerplate.Domain\Boilerplate.Domain.csproj", "{3C114B51-458A-4D64-ADF1-8A8A6A4C979B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Boilerplate.Domain", "src\Boilerplate.Domain\Boilerplate.Domain.csproj", "{3C114B51-458A-4D64-ADF1-8A8A6A4C979B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Boilerplate.Application", "Boilerplate.Application\Boilerplate.Application.csproj", "{52A1C456-5C00-4BE7-BE36-F8BE05FCB6D5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Boilerplate.Application", "src\Boilerplate.Application\Boilerplate.Application.csproj", "{52A1C456-5C00-4BE7-BE36-F8BE05FCB6D5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Boilerplate.Infrastructure", "Boilerplate.Infrastructure\Boilerplate.Infrastructure.csproj", "{04E07BBD-8B82-4921-8C88-F145E496CD8E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Boilerplate.Infrastructure", "src\Boilerplate.Infrastructure\Boilerplate.Infrastructure.csproj", "{04E07BBD-8B82-4921-8C88-F145E496CD8E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Boilerplate.Api", "Boilerplate.Api\Boilerplate.Api.csproj", "{835CBE03-2A74-44A7-A6B8-2E250F36C174}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Boilerplate.Api", "src\Boilerplate.Api\Boilerplate.Api.csproj", "{835CBE03-2A74-44A7-A6B8-2E250F36C174}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Boilerplate.Test.Unit", "Boilerplate.Test.Unit\Boilerplate.Test.Unit.csproj", "{FA85A1B9-F728-490B-B16E-26BDEE70A0AB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Boilerplate.Test.Unit", "test\Boilerplate.Test.Unit\Boilerplate.Test.Unit.csproj", "{FA85A1B9-F728-490B-B16E-26BDEE70A0AB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Boilerplate.Test.Integration", "Boilerplate.Test.Integration\Boilerplate.Test.Integration.csproj", "{DD1E49F2-2479-49E6-B416-F2009A246B7F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Boilerplate.Test.Integration", "test\Boilerplate.Test.Integration\Boilerplate.Test.Integration.csproj", "{DD1E49F2-2479-49E6-B416-F2009A246B7F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Boilerplate.Test.Shared", "Boilerplate.Test.Shared\Boilerplate.Test.Shared.csproj", "{1F10146B-4452-4EB7-82AE-FB565F8DF472}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Boilerplate.Test.Shared", "test\Boilerplate.Test.Shared\Boilerplate.Test.Shared.csproj", "{1F10146B-4452-4EB7-82AE-FB565F8DF472}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
