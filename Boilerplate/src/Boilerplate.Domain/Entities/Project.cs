@@ -8,13 +8,13 @@ public class Project
     public Project(
         string name,
         string description,
-        DateTime endDate
+        DateOnly endDate
     )
     {
         Id = Guid.NewGuid();
         Name = name;
         Description = description;
-        BeginDate = DateTime.UtcNow;
+        BeginDate = DateOnly.FromDateTime(DateTime.Now);
         EndDate = endDate;
         ProjectStatus = ProjectStatus.Active;
     }
@@ -23,7 +23,7 @@ public class Project
     public Guid Id { get; private set; }
     public string Name { get; private set; }
     public string Description { get; private set; }
-    public DateTime BeginDate { get; private set; }
-    public DateTime EndDate { get; private set; }
+    public DateOnly BeginDate { get; private set; }
+    public DateOnly EndDate { get; private set; }
     public ProjectStatus ProjectStatus { get; private set; }
 }

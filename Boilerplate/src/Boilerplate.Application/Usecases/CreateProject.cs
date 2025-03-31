@@ -18,7 +18,7 @@ public class CreateProject
         var project = new Project(
             input.Name,
             input.Description,            
-            endDate: DateTime.Now.AddDays(10)            
+            endDate: input.EndDate            
         );
 
         await _projectRepository.Create(project);
