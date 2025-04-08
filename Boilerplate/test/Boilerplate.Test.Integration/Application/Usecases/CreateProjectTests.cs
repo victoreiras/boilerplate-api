@@ -6,7 +6,7 @@ using Boilerplate.Infrastructure.Repositories;
 using Moq;
 using FluentAssertions;
 
-namespace Boilerplate.Test.Unit.Application.Usecases;
+namespace Boilerplate.Test.Integration.Application.Usecases;
 
 public class CreateProjectTests
 {
