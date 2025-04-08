@@ -31,13 +31,13 @@ public class Project
     public static ErrorOr<Project> Create(string name, string description, DateOnly endDate)
     {
         if(string.IsNullOrEmpty(name))
-            Error.Validation("Project.Name", "Name is required");
+            return Error.Validation("Project.Name", "Name is required");
 
         if(string.IsNullOrEmpty(description))
-            Error.Validation("Project.Description", "Description is required");
+            return Error.Validation("Project.Description", "Description is required");
 
         if(endDate <= DateOnly.FromDateTime(DateTime.Now))
-            Error.Validation("Project.EndDate", "The date has to be greater than today");
+            return Error.Validation("Project.EndDate", "The date has to be greater than today");
 
         return new Project(name, description, endDate);
     }

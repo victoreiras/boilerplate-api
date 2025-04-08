@@ -15,14 +15,14 @@ public class CreateProject
 
     public async Task<Project> Execute(ProjectDto input)
     {
-        var project = new Project(
+        var project = Project.Create(
             input.Name,
             input.Description,            
             endDate: input.EndDate            
         );
 
-        await _projectRepository.Create(project);
+        await _projectRepository.Create(project.Value);
 
-        return project;
+        return project.Value;
     }
 }

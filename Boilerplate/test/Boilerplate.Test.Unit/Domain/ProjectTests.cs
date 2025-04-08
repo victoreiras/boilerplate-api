@@ -23,4 +23,16 @@ public class ProjectTests
         project.Value.EndDate.Should().Be(new DateOnly(2040, 12, 31));
         project.Value.ProjectStatus.Should().Be(ProjectStatus.Active);        
     }
+
+    [Fact(DisplayName = "Should not create a project with end date invalid")]
+    public void Should_Not_Create_Project_With_EndDate_Invalid()
+    {
+        var project = Project.Create(
+            name: "Novo Prjeto",
+            description: "descrição do projeto",
+            endDate: DateOnly.FromDateTime(DateTime.Now)
+        );
+
+        project.IsError.Should().BeTrue();
+    }
 }
