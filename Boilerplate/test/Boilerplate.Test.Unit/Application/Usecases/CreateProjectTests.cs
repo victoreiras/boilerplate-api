@@ -26,30 +26,28 @@ public class CreateProjectTests
 
         var result = await createProject.Execute(input);
         
-        Assert.NotNull(result);
-        Assert.NotNull(result.Id);
-        Assert.Equal(result.Name, input.Name);
-        Assert.Equal(result.Description, input.Description);
-        Assert.Equal(result.BeginDate, DateOnly.FromDateTime(DateTime.UtcNow));
-        Assert.Equal(result.EndDate, DateOnly.FromDateTime(DateTime.UtcNow.AddDays(10)));
+        result.IsError.Should().BeFalse();
+        result.Value.Id.Should().NotBeEmpty();
+        result.Value.Name.Should().Be(input.Name);
+        result.Value.Description.Should().Be(input.Description);
+        result.Value.BeginDate.Should().Be(DateOnly.FromDateTime(DateTime.UtcNow));
+        result.Value.EndDate.Should().Be(DateOnly.FromDateTime(DateTime.UtcNow.AddDays(10)));
     }
 
     [Fact(DisplayName = "Should not create a project with end date less than today")]
-    public async Task ShouldNotCreateAProjectWithoutEndDate()
+    public async Task ShouldNotCreateAProjectWithEndDateInvalid()
     {
-        // var projectRepository = new ProjectRepository();
-        // var createProject = new CreateProject(projectRepository);
+        var projectRepository = new ProjectRepository();
+        var createProject = new CreateProject(projectRepository);
 
-        // var input = new ProjectDto(
-        //     Name: "Nome do Projeto",
-        //     Description: "Descrição do Projeto",
-        //     EndDate: DateOnly.FromDateTime(DateTime.Now.AddDays(-1))
-        // );
+        var input = new ProjectDto(
+            Name: "Nome do Projeto",
+            Description: "Descrição do Projeto",
+            EndDate: DateOnly.FromDateTime(DateTime.Now.AddDays(-1))
+        );
 
-        // var result = await createProject.Execute(input);
+        var result = await createProject.Execute(input);
 
-        // result.IsSuccess.Should().Be(false);
-        // result.Data.Should().BeNull();
-        // result.Messages.Should().Be("the end date cannot be less than today's date");
+        result.IsError.Should().BeTrue();        
     }
 }
