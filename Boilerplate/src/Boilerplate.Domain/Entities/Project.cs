@@ -6,6 +6,9 @@ namespace Boilerplate.Domain.Entities;
 public class Project
 {
     #region Ctors
+
+    public Project(){}
+
     private Project(
         string name,
         string description,
@@ -21,12 +24,12 @@ public class Project
     }
     #endregion
 
-    public Guid Id { get; private set; }
-    public string Name { get; private set; }
-    public string Description { get; private set; }
-    public DateOnly BeginDate { get; private set; }
-    public DateOnly EndDate { get; private set; }
-    public ProjectStatus ProjectStatus { get; private set; }
+    public Guid Id { get; set; }
+    public string Name { get; set; }
+    public string Description { get; set; }
+    public DateOnly BeginDate { get; set; }
+    public DateOnly EndDate { get; set; }
+    public ProjectStatus ProjectStatus { get; set; }
 
     public static ErrorOr<Project> Create(string name, string description, DateOnly endDate)
     {
