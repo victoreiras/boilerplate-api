@@ -19,8 +19,7 @@ public class CreateProjectTests : IDisposable
 
     public CreateProjectTests()
     {
-        _connection = new SqliteConnection("DataSource=:memory:");
-        _connection.Open();
+        _connection = new SqliteConnection("DataSource=ProjetoDB.db");
 
         var options = new DbContextOptionsBuilder<AppDbContext>()
             .UseSqlite(_connection)
