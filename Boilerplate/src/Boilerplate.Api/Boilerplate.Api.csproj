@@ -16,4 +16,9 @@
     <Folder Include="Infra\Swagger\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Boilerplate.Application\Boilerplate.Application.csproj" />
+    <ProjectReference Include="..\Boilerplate.Infrastructure\Boilerplate.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>

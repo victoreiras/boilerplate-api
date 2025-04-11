@@ -1,5 +1,5 @@
 using Boilerplate.Application.Dtos;
-using Boilerplate.Application.Usecases;
+using Boilerplate.Application.Usecases.CreateProject;
 using Boilerplate.Domain.Entities;
 using Boilerplate.Infrastructure.Repositories;
 using FluentAssertions;

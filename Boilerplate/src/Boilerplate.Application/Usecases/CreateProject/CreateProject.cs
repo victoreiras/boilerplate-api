@@ -3,7 +3,7 @@ using Boilerplate.Domain.Entities;
 using Boilerplate.Domain.Repositories;
 using ErrorOr;
 
-namespace Boilerplate.Application.Usecases;
+namespace Boilerplate.Application.Usecases.CreateProject;
 
 public class CreateProject : ICreateProject
 {
@@ -18,11 +18,11 @@ public class CreateProject : ICreateProject
     {
         var project = Project.Create(
             input.Name,
-            input.Description,            
-            endDate: input.EndDate            
+            input.Description,
+            endDate: input.EndDate
         );
 
-        if(project.IsError)
+        if (project.IsError)
             return project.Errors;
 
         await _projectRepository.Create(project.Value);
