@@ -40,7 +40,7 @@ public class Project
             return Error.Validation("Project.Description", "Description is required");
 
         if(endDate <= DateOnly.FromDateTime(DateTime.Now))
-            return Error.Validation("Project.EndDate", "The date has to be greater than today");
+            return Error.Validation("Project.EndDate", "The end date has to be greater than today");
 
         return new Project(name, description, endDate);
     }

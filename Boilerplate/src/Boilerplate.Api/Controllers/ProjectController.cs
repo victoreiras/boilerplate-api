@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Boilerplate.Api.Controllers;
 
 [ApiController]
-[Route("api/[controller]")]
+[Route("api/project")]
 public class ProjectController : ControllerBase
 {
     private readonly ICreateProject _createProject;
@@ -19,13 +19,17 @@ public class ProjectController : ControllerBase
     public async Task<IResult> Post(ProjectDto request)
     {
         var result = await _createProject.Execute(request);
-        return Results.Created("", result.Value);
+
+        if(result.IsError)
+            return Results.BadRequest(result.Errors);
+            
+        return Results.Created("api/project", result.Value);
     }
 
     [HttpGet]
     [Route("health")]
-    public async Task<IActionResult> Get()
+    public async Task<IResult> Get()
     {
-        return Ok("OK");
+        return Results.Ok("OK");
     }
 }
