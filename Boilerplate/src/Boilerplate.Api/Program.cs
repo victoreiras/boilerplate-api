@@ -9,6 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
+builder.Services.AddScoped<AppDbContext>();
 builder.Services.AddScoped<ICreateProject, CreateProject>();
 builder.Services.AddScoped<IProjectRepository, ProjectRepository>();
 

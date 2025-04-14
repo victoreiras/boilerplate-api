@@ -19,7 +19,7 @@ public class ProjectController : ControllerBase
     public async Task<IResult> Post(ProjectDto request)
     {
         var result = await _createProject.Execute(request);
-        return Results.Created("", result);
+        return Results.Created("", result.Value);
     }
 
     [HttpGet]
