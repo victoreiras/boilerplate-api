@@ -1,4 +1,3 @@
-using Boilerplate.Application.Dtos;
 using Boilerplate.Domain.Entities;
 using Boilerplate.Domain.Repositories;
 using ErrorOr;
@@ -16,7 +15,7 @@ public class CreateProject : ICreateProject
     }
     #endregion
 
-    public async Task<ErrorOr<Project>> Execute(ProjectDto input)
+    public async Task<ErrorOr<Output>> Execute(Input input)
     {
         var project = Project.Create(
             input.Name,
@@ -29,6 +28,6 @@ public class CreateProject : ICreateProject
 
         await _projectRepository.Create(project.Value);
 
-        return project;
+        return new Output(project.Value.Id);
     }
 }

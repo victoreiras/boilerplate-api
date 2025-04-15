@@ -1,4 +1,3 @@
-using Boilerplate.Application.Dtos;
 using Boilerplate.Application.Usecases.CreateProject;
 using Boilerplate.Domain.Entities;
 using Boilerplate.Infrastructure.Repositories;
@@ -28,27 +27,6 @@ public class CreateProjectTests : IDisposable
         _context = new AppDbContext(options);
         _context.Database.EnsureCreated();
 
-        _context.Projects.AddRange(
-            new Project()
-            {
-                Id = Guid.NewGuid(),
-                Name = "Projeto 1",
-                Description = "Descrição do projeto 1",
-                BeginDate = new DateOnly(2025, 05, 01),
-                EndDate = new DateOnly(2026, 05, 01),
-                ProjectStatus = Domain.Enums.ProjectStatus.Active
-            },
-            new Project()
-            {
-                Id = Guid.NewGuid(),
-                Name = "Projeto 2",
-                Description = "Descrição do projeto 2",
-                BeginDate = new DateOnly(2025, 05, 01),
-                EndDate = new DateOnly(2027, 01, 03),
-                ProjectStatus = Domain.Enums.ProjectStatus.Active
-            }
-        );
-
         _projectRepository = new ProjectRepository(_context);
         _createProject = new CreateProject(_projectRepository);
     }
@@ -57,7 +35,7 @@ public class CreateProjectTests : IDisposable
     [Fact(DisplayName = "Should create a project")]
     public async Task Should_Create_Project()
     {
-        var input = new ProjectDto(
+        var input = new Input(
             Name: "Nome do Projeto",
             Description: "Descrição do Projeto",
             EndDate: DateOnly.FromDateTime(DateTime.Now.AddDays(10))

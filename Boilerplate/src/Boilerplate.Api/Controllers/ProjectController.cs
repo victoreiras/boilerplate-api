@@ -1,4 +1,3 @@
-using Boilerplate.Application.Dtos;
 using Boilerplate.Application.Usecases.CreateProject;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,7 +17,7 @@ public class ProjectController : ControllerBase
     #endregion
 
     [HttpPost]
-    public async Task<IResult> Post(ProjectDto request)
+    public async Task<IResult> Post(Input request)
     {
         var result = await _createProject.Execute(request);
 
