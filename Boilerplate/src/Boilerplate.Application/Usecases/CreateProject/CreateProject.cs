@@ -7,12 +7,14 @@ namespace Boilerplate.Application.Usecases.CreateProject;
 
 public class CreateProject : ICreateProject
 {
+    #region Ctors
     private readonly IProjectRepository _projectRepository;
 
     public CreateProject(IProjectRepository projectRepository)
     {
         _projectRepository = projectRepository;
     }
+    #endregion
 
     public async Task<ErrorOr<Project>> Execute(ProjectDto input)
     {

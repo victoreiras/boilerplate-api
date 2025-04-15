@@ -8,28 +8,23 @@ namespace Boilerplate.Api.Controllers;
 [Route("api/project")]
 public class ProjectController : ControllerBase
 {
+    #region Ctors
     private readonly ICreateProject _createProject;
 
     public ProjectController(ICreateProject createProject)
     {
         _createProject = createProject;
     }
+    #endregion
 
     [HttpPost]
     public async Task<IResult> Post(ProjectDto request)
     {
         var result = await _createProject.Execute(request);
 
-        if(result.IsError)
+        if (result.IsError)
             return Results.BadRequest(result.Errors);
-            
-        return Results.Created("api/project", result.Value);
-    }
 
-    [HttpGet]
-    [Route("health")]
-    public async Task<IResult> Get()
-    {
-        return Results.Ok("OK");
+        return Results.Created("api/project", result.Value);
     }
 }
