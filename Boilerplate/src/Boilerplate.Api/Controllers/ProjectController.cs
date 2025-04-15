@@ -16,10 +16,17 @@ public class ProjectController : ControllerBase
     }
     #endregion
 
+    /// <summary>
+    /// Create a new project
+    /// </summary>
+    /// <param name="input">Project data to be created</param>
+    /// <returns>201 Created if successful, 400 Bad Request if validation fails</returns>
     [HttpPost]
-    public async Task<IResult> Post(Input request)
+    [ProducesResponseType(typeof(Output), StatusCodes.Status201Created)]
+    [ProducesResponseType(typeof(List<string>), StatusCodes.Status400BadRequest)]
+    public async Task<IResult> Post(Input input)
     {
-        var result = await _createProject.Execute(request);
+        var result = await _createProject.Execute(input);
 
         if (result.IsError)
             return Results.BadRequest(result.Errors);
