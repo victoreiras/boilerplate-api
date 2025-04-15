@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Boilerplate.Domain\Boilerplate.Domain.csproj" />
+    <ProjectReference Include="..\Boilerplate.Application\Boilerplate.Application.csproj" />
   </ItemGroup>
 
   <ItemGroup>

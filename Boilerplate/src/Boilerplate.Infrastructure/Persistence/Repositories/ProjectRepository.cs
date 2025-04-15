@@ -1,9 +1,9 @@
 using Boilerplate.Domain.Entities;
-using Boilerplate.Domain.Repositories;
+using Boilerplate.Application.Repositories;
 using Boilerplate.Infrastructure.Persistence.Context;
 using Microsoft.EntityFrameworkCore;
 
-namespace Boilerplate.Infrastructure.Repositories;
+namespace Boilerplate.Infrastructure.Persistence.Repositories;
 
 public class ProjectRepository : IProjectRepository
 {

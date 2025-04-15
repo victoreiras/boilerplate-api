@@ -1,6 +1,5 @@
 using Boilerplate.Application.Usecases.CreateProject;
-using Boilerplate.Domain.Entities;
-using Boilerplate.Infrastructure.Repositories;
+using Boilerplate.Infrastructure.Persistence.Repositories;
 using FluentAssertions;
 using Boilerplate.Infrastructure.Persistence.Context;
 using Microsoft.EntityFrameworkCore;

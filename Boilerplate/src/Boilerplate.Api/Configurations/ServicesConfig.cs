@@ -1,7 +1,7 @@
 using Boilerplate.Application.Usecases.CreateProject;
-using Boilerplate.Domain.Repositories;
+using Boilerplate.Application.Repositories;
 using Boilerplate.Infrastructure.Persistence.Context;
-using Boilerplate.Infrastructure.Repositories;
+using Boilerplate.Infrastructure.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 namespace Boilerplate.Api.Configurations;

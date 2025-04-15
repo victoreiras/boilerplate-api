@@ -1,10 +1,10 @@
 using Boilerplate.Domain.Entities;
 
-namespace Boilerplate.Domain.Repositories;
+namespace Boilerplate.Application.Repositories;
 
 public interface IProjectRepository
 {
-    Task Create(Entities.Project project);
+    Task Create(Project project);
 
     Task<Project> GetById(Guid id);
 }

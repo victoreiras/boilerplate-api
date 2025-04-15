@@ -1,5 +1,5 @@
 using Boilerplate.Domain.Entities;
-using Boilerplate.Domain.Repositories;
+using Boilerplate.Application.Repositories;
 using ErrorOr;
 
 namespace Boilerplate.Application.Usecases.CreateProject;
