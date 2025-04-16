@@ -20,6 +20,13 @@ public class ProjectRepository : IProjectRepository
         await _db.SaveChangesAsync();
     }
 
+    public async Task<List<Project>> GetActives()
+    {
+        return await _db.Projects
+            .Where(x => x.ProjectStatus == Domain.Enums.ProjectStatus.Active)
+            .ToListAsync();
+    }
+
     public async Task<Project?> GetById(Guid id)
     {
         return await _db.Projects.Where(x => x.Id == id).FirstOrDefaultAsync();

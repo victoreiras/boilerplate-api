@@ -7,4 +7,6 @@ public interface IProjectRepository
     Task Create(Project project);
 
     Task<Project> GetById(Guid id);
+
+    Task<List<Project>> GetActives();
 }

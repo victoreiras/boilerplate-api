@@ -3,6 +3,7 @@ using Boilerplate.Application.Repositories;
 using Boilerplate.Infrastructure.Persistence.Context;
 using Boilerplate.Infrastructure.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
+using Boilerplate.Application.Usecases.GetActiveProjects;
 
 namespace Boilerplate.Api.Configurations;
 
@@ -10,8 +11,10 @@ public static class ServicesConfig
 {
     public static void AddServices(this IServiceCollection services)
     {        
-        services.AddScoped<ICreateProject, CreateProject>();
-        services.AddScoped<IProjectRepository, ProjectRepository>();
+        services
+            .AddScoped<ICreateProject, CreateProject>()
+            .AddScoped<IGetActiveProjects, GetActiveProjects>()
+            .AddScoped<IProjectRepository, ProjectRepository>();
     }
 
     public static void AddAppDbContext(this IServiceCollection services)

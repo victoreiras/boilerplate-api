@@ -1,4 +1,5 @@
 using Boilerplate.Application.Usecases.CreateProject;
+using Boilerplate.Application.Usecases.GetActiveProjects;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Boilerplate.Api.Controllers;
@@ -9,10 +10,11 @@ public class ProjectController : ControllerBase
 {
     #region Ctors
     private readonly ICreateProject _createProject;
-
-    public ProjectController(ICreateProject createProject)
+    private readonly IGetActiveProjects _getActiveProjects;
+    public ProjectController(ICreateProject createProject, IGetActiveProjects getActiveProjects)
     {
         _createProject = createProject;
+        _getActiveProjects = getActiveProjects;
     }
     #endregion
 
@@ -33,5 +35,17 @@ public class ProjectController : ControllerBase
             return Results.BadRequest(result.Errors);
 
         return Results.Created("api/project", result.Value);
+    }
+    
+    /// <summary>
+    /// Get all active projects
+    /// </summary>
+    /// <returns>200 Ok if successful</returns>    
+    [HttpGet]
+    [ProducesResponseType(typeof(OutputGetActiveProjects), StatusCodes.Status200OK)]
+    public async Task<IResult> Get()
+    {
+        var result = await _getActiveProjects.Execute();
+        return Results.Ok(result);
     }
 }
