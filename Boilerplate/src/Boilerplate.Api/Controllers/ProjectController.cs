@@ -28,14 +28,14 @@ public class ProjectController : ControllerBase
     [Route("create")]
     [ProducesResponseType(typeof(Output), StatusCodes.Status201Created)]
     [ProducesResponseType(typeof(List<string>), StatusCodes.Status400BadRequest)]
-    public async Task<IResult> Post(Input input)
+    public async Task<IActionResult> Post(Input input)
     {
         var result = await _createProject.Execute(input);
 
         if (result.IsError)
-            return Results.BadRequest(result.Errors);
+            return BadRequest(result.Errors);
 
-        return Results.Created("api/project", result.Value);
+        return Created("api/project", result.Value);
     }
     
     /// <summary>
@@ -44,9 +44,9 @@ public class ProjectController : ControllerBase
     /// <returns>200 Ok if successful</returns>    
     [HttpGet]
     [ProducesResponseType(typeof(OutputGetActiveProjects), StatusCodes.Status200OK)]
-    public async Task<IResult> Get()
+    public async Task<IActionResult> Get()
     {
         var result = await _getActiveProjects.Execute();
-        return Results.Ok(result);
+        return Ok(result);
     }
 }
