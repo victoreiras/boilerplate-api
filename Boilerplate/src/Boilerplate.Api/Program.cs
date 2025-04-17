@@ -8,6 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddServices();
 builder.Services.AddAppDbContext();
 builder.Services.AddApiVersion();
+builder.Services.AddCache();
 
 builder.Services.AddControllers();
 

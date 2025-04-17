@@ -35,4 +35,9 @@ public static class ServicesConfig
                 options.DefaultApiVersion = new ApiVersion(1, 0);
             });
     }
+
+    public static void AddCache(this IServiceCollection services)
+    {
+        services.AddMemoryCache();
+    }
 }

@@ -4,6 +4,7 @@ using FluentAssertions;
 using Boilerplate.Infrastructure.Persistence.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Data.Sqlite;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace Boilerplate.Test.Integration.Application.Usecases;
 
@@ -26,7 +27,9 @@ public class CreateProjectTests : IDisposable
         _context = new AppDbContext(options);
         _context.Database.EnsureCreated();
 
-        _projectRepository = new ProjectRepository(_context);
+        var _cache = new MemoryCache(new MemoryCacheOptions());
+
+        _projectRepository = new ProjectRepository(_context, _cache);
         _createProject = new CreateProject(_projectRepository);
     }
     #endregion

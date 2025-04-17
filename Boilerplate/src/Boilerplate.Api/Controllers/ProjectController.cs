@@ -6,7 +6,7 @@ namespace Boilerplate.Api.Controllers;
 
 [ApiVersion("1.0")]
 [ApiController]
-[Route("api/v{version:apiVersion}/project")]
+[Route("api/v{version:apiVersion}/projects")]
 public class ProjectController : ControllerBase
 {
     #region Ctors
@@ -25,7 +25,6 @@ public class ProjectController : ControllerBase
     /// <param name="input">Project data to be created</param>
     /// <returns>201 Created if successful, 400 Bad Request if validation fails</returns>
     [HttpPost]
-    [Route("create")]
     [ProducesResponseType(typeof(Output), StatusCodes.Status201Created)]
     [ProducesResponseType(typeof(List<string>), StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> Post(Input input)

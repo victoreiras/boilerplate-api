@@ -6,6 +6,7 @@ using Boilerplate.Infrastructure.Persistence.Repositories;
 using FluentAssertions;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace Boilerplate.Test.Integration.Application.Usecases;
 
@@ -32,7 +33,9 @@ public class GetProjectsTests : IDisposable
         _context.Projects.AddRange(project1);
         _context.SaveChangesAsync();
 
-        projectRepository = new ProjectRepository(_context);
+        var _cache = new MemoryCache(new MemoryCacheOptions());
+
+        projectRepository = new ProjectRepository(_context, _cache);
     }
     #endregion
 
