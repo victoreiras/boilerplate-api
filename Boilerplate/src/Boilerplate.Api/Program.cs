@@ -10,6 +10,7 @@ builder.Services.AddServices();
 builder.Services.AddAppDbContext();
 builder.Services.AddApiVersion();
 builder.Services.AddCache();
+builder.Services.AddRepositories();
 
 builder.Services.AddControllers();
 
