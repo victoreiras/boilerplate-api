@@ -1,5 +1,6 @@
 using Boilerplate.Application.Usecases.CreateProject;
 using Boilerplate.Application.Usecases.GetActiveProjects;
+using Boilerplate.Application.Usecases.GetProjectById;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Boilerplate.Api.Controllers;
@@ -12,10 +13,15 @@ public class ProjectController : ControllerBase
     #region Ctors
     private readonly ICreateProject _createProject;
     private readonly IGetActiveProjects _getActiveProjects;
-    public ProjectController(ICreateProject createProject, IGetActiveProjects getActiveProjects)
+    private readonly IGetProjectById _getProjectById;
+    public ProjectController(
+        ICreateProject createProject, 
+        IGetActiveProjects getActiveProjects, 
+        IGetProjectById getProjectById)
     {
         _createProject = createProject;
         _getActiveProjects = getActiveProjects;
+        _getProjectById = getProjectById;
     }
     #endregion
 
@@ -47,5 +53,24 @@ public class ProjectController : ControllerBase
     {
         var result = await _getActiveProjects.Execute();
         return Ok(result);
+    }
+
+    /// <summary>
+    /// Get a project by id
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns>200 Ok if successful</returns>
+    [HttpGet]
+    [Route("{id}")]
+    [ProducesResponseType(typeof(OutputGetProjectById), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(List<string>), StatusCodes.Status400BadRequest)]
+    public async Task<IActionResult> GetById(Guid id)
+    {
+        var result = await _getProjectById.Execute(id);
+
+        if(result.IsError)
+            return BadRequest(result.Errors);
+
+        return Ok(result.Value);
     }
 }
