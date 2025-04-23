@@ -7,7 +7,7 @@ namespace Boilerplate.Api.Controllers;
 
 [ApiVersion("1.0")]
 [ApiController]
-[Route("api/v{version:apiVersion}/projects")]
+[Route("api/v1/projects")]
 public class ProjectController : ControllerBase
 {
     #region Ctors
@@ -48,10 +48,11 @@ public class ProjectController : ControllerBase
     /// </summary>
     /// <returns>200 Ok if successful</returns>    
     [HttpGet]
+    [Route("pageNumber/{pageNumber:int}/pageSize/{pageSize:int}")]
     [ProducesResponseType(typeof(OutputGetActiveProjects), StatusCodes.Status200OK)]
-    public async Task<IActionResult> Get()
+    public async Task<IActionResult> Get(int pageNumber, int pageSize)
     {
-        var result = await _getActiveProjects.Execute();
+        var result = await _getActiveProjects.Execute(pageNumber, pageSize);
         return Ok(result);
     }
 

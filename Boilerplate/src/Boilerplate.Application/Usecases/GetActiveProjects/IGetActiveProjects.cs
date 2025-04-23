@@ -1,6 +1,8 @@
+using Boilerplate.Application.Common.Models;
+
 namespace Boilerplate.Application.Usecases.GetActiveProjects;
 
 public interface IGetActiveProjects
 {   
-    Task<List<OutputGetActiveProjects>> Execute();
+    Task<PagedResult<OutputGetActiveProjects>> Execute(int pageNumber, int pageSize);
 }

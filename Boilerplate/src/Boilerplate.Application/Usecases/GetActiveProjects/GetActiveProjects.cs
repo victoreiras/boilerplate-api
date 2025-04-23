@@ -1,4 +1,5 @@
 using Boilerplate.Application.Repositories;
+using Boilerplate.Application.Common.Models;
 
 namespace Boilerplate.Application.Usecases.GetActiveProjects;
 
@@ -13,17 +14,20 @@ public class GetActiveProjects : IGetActiveProjects
     }
     #endregion
 
-    public async Task<List<OutputGetActiveProjects>> Execute()
-    {
-        var output = new List<OutputGetActiveProjects>();
-        
-        var projects = await _projectRepository.GetActives();
+    public async Task<PagedResult<OutputGetActiveProjects>> Execute(int pageNumber, int pageSize)
+    {        
+        var (projects, total) = await _projectRepository.GetActives(pageNumber, pageSize);        
 
-        foreach (var item in projects)
+        return new PagedResult<OutputGetActiveProjects>
         {
-            output.Add(new OutputGetActiveProjects(item.Name, item.Description, item.ProjectStatus.ToString()));
-        }
-
-        return output;
+            Items = projects.Select(p => new OutputGetActiveProjects(
+                p.Name,
+                p.Description,
+                p.ProjectStatus.ToString()
+            )),
+            TotalItems = total,
+            Page = pageNumber,
+            Size = pageSize
+        };
     }
 }

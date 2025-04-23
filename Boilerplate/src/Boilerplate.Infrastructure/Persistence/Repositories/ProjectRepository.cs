@@ -28,18 +28,21 @@ public class ProjectRepository : IProjectRepository
         _cache.Set($"project-{project.Id}", project);
     }
 
-    public async Task<List<Project>> GetActives()
-    {
-        if(_cache.TryGetValue(PROJECTS_KEY, out List<Project>? projects))
-            return projects;
-        
-        projects =  await _db.Projects
-            .Where(x => x.ProjectStatus == Domain.Enums.ProjectStatus.Active)
+    public async Task<(List<Project> projects, int total)> GetActives(int pageNumber, int pageSize)
+    {        
+        var query = _db.Projects
+            .AsNoTracking()
+            .Where(x => x.ProjectStatus == Domain.Enums.ProjectStatus.Active);
+
+        var total = await query.CountAsync();
+
+        var projects =  await query
+            .OrderBy(p => p.BeginDate)
+            .Skip((pageNumber - 1) * pageSize)
+            .Take(pageSize)
             .ToListAsync();
 
-        _cache.Set(PROJECTS_KEY, projects, TimeSpan.FromHours(1));
-
-        return projects;
+        return (projects, total);
     }
 
     public async Task<Project?> GetById(Guid id)

@@ -44,10 +44,12 @@ public class GetProjectsTests : IDisposable
     {
         var getActiveProjects = new GetActiveProjects(projectRepository);
 
-        var result = await getActiveProjects.Execute();
+        var pageNumber = 1;
+        var pageSize = 10;
+        var result = await getActiveProjects.Execute(pageNumber, pageSize);
 
         result.Should().NotBeNull();
-        result.Should().OnlyContain(x => x.Status == ProjectStatus.Active.ToString());
+        result.Items.Should().OnlyContain(x => x.Status == ProjectStatus.Active.ToString());
     }
 
     public void Dispose()

@@ -8,5 +8,5 @@ public interface IProjectRepository
 
     Task<Project> GetById(Guid id);
 
-    Task<List<Project>> GetActives();
+    Task<(List<Project> projects, int total)> GetActives(int pageNumber, int pageSize);
 }
