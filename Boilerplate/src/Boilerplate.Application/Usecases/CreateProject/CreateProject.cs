@@ -15,7 +15,7 @@ public class CreateProject : ICreateProject
     }
     #endregion
 
-    public async Task<ErrorOr<Output>> Execute(Input input)
+    public async Task<ErrorOr<CreateProjectOutput>> Execute(CreateProjectInput input)
     {
         var project = Project.Create(
             input.Name,
@@ -28,6 +28,6 @@ public class CreateProject : ICreateProject
 
         await _projectRepository.Create(project.Value);
 
-        return new Output(project.Value.Id);
+        return new CreateProjectOutput(project.Value.Id);
     }
 }

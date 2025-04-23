@@ -1,6 +1,6 @@
 namespace Boilerplate.Application.Usecases.CreateProject;
 
-public record Input(
+public record CreateProjectInput(
     string Name,
     string Description,
     DateOnly EndDate

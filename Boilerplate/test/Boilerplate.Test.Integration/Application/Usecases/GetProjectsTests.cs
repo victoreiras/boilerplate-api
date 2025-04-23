@@ -1,4 +1,4 @@
-using Boilerplate.Application.Usecases.GetActiveProjects;
+using Boilerplate.Application.Usecases.GetProjects;
 using Boilerplate.Domain.Entities;
 using Boilerplate.Domain.Enums;
 using Boilerplate.Infrastructure.Persistence.Context;
@@ -42,11 +42,11 @@ public class GetProjectsTests : IDisposable
     [Fact(DisplayName = "Should get active projects")]
     public async Task Should_Get_Active_Projects()
     {
-        var getActiveProjects = new GetActiveProjects(projectRepository);
+        var getProjects = new GetProjects(projectRepository);
 
         var pageNumber = 1;
         var pageSize = 10;
-        var result = await getActiveProjects.Execute(pageNumber, pageSize);
+        var result = await getProjects.Execute(pageNumber, pageSize);
 
         result.Should().NotBeNull();
         result.Items.Should().OnlyContain(x => x.Status == ProjectStatus.Active.ToString());

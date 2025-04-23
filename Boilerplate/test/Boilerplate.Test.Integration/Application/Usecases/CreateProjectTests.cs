@@ -37,20 +37,20 @@ public class CreateProjectTests : IDisposable
     [Fact(DisplayName = "Should create a project")]
     public async Task Should_Create_Project()
     {
-        var input = new Input(
+        var createProjectInput = new CreateProjectInput(
             Name: "Nome do Projeto",
             Description: "Descrição do Projeto",
             EndDate: DateOnly.FromDateTime(DateTime.Now.AddDays(10))
         );
 
-        var result = await _createProject.Execute(input);
+        var result = await _createProject.Execute(createProjectInput);
 
         var projectCreated = await _projectRepository.GetById(result.Value.Id);
 
         result.IsError.Should().BeFalse();
         projectCreated?.Id.Should().NotBeEmpty();
-        projectCreated?.Name.Should().Be(input.Name);
-        projectCreated?.Description.Should().Be(input.Description);
+        projectCreated?.Name.Should().Be(createProjectInput.Name);
+        projectCreated?.Description.Should().Be(createProjectInput.Description);
         projectCreated?.BeginDate.Should().Be(DateOnly.FromDateTime(DateTime.UtcNow));
         projectCreated?.EndDate.Should().Be(DateOnly.FromDateTime(DateTime.UtcNow.AddDays(10)));
 

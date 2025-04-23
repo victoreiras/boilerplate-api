@@ -4,5 +4,5 @@ namespace Boilerplate.Application.Usecases.GetProjectById;
 
 public interface IGetProjectById
 {
-    Task<ErrorOr<OutputGetProjectById>> Execute(Guid id);
+    Task<ErrorOr<GetProjectByIdOutput>> Execute(Guid id);
 }

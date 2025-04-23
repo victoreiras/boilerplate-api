@@ -1,3 +1,3 @@
 namespace Boilerplate.Application.Usecases.CreateProject;
 
-public record Output(Guid Id);
+public record CreateProjectOutput(Guid Id);

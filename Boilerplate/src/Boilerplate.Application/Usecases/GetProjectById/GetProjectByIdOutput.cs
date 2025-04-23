@@ -1,6 +1,6 @@
 namespace Boilerplate.Application.Usecases.GetProjectById;
 
-public record OutputGetProjectById(
+public record GetProjectByIdOutput(
     Guid Id,
     string Name,
     string Description,

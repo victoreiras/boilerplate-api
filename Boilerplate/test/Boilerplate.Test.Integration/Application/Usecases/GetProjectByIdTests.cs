@@ -32,8 +32,8 @@ public class GetProjectByIdTests
     public async Task Should_Get_Project_By_Id()
     {                        
         var createProject = new CreateProject(_projectRepository);
-        var inputCreateProject = new Input("Novo projeto teste", "Novo projeto teste", DateOnly.FromDateTime(DateTime.Now.AddDays(100)));
-        var project = await createProject.Execute(inputCreateProject);
+        var createProjectInput = new CreateProjectInput("Novo projeto teste", "Novo projeto teste", DateOnly.FromDateTime(DateTime.Now.AddDays(100)));
+        var project = await createProject.Execute(createProjectInput);
         if(project.IsError)
             Console.WriteLine(project.Errors.FirstOrDefault().Description);
         var projectId = project.Value.Id;

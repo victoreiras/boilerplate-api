@@ -12,14 +12,14 @@ public class GetProjectById : IGetProjectById
         _projectRepository = projectRepository;
     }
 
-    public async Task<ErrorOr<OutputGetProjectById>> Execute(Guid id)
+    public async Task<ErrorOr<GetProjectByIdOutput>> Execute(Guid id)
     {
         var project = await _projectRepository.GetById(id);
 
         if(project is null)
             return Error.Failure("Project not found");
 
-        var result = new OutputGetProjectById(project.Id, project.Name, project.Description, project.BeginDate, project.EndDate);
+        var result = new GetProjectByIdOutput(project.Id, project.Name, project.Description, project.BeginDate, project.EndDate);
 
         return result;
     }
