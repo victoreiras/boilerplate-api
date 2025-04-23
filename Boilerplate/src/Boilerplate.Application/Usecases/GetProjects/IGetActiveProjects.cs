@@ -1,8 +1,9 @@
 using Boilerplate.Application.Common.Models;
+using ErrorOr;
 
 namespace Boilerplate.Application.Usecases.GetProjects;
 
 public interface IGetProjects
 {   
-    Task<PagedResult<GetProjectsOutput>> Execute(int pageNumber, int pageSize);
+    Task<ErrorOr<PagedResult<GetProjectsOutput>>> Execute(int pageNumber, int pageSize);
 }
