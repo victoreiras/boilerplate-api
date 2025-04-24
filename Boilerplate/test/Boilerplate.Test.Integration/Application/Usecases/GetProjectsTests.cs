@@ -49,7 +49,7 @@ public class GetProjectsTests : IDisposable
         var result = await getProjects.Execute(pageNumber, pageSize);
 
         result.Should().NotBeNull();
-        result.Items.Should().OnlyContain(x => x.Status == ProjectStatus.Active.ToString());
+        result.Value.Items.Should().OnlyContain(x => x.Status == ProjectStatus.Active.ToString());
     }
 
     public void Dispose()
