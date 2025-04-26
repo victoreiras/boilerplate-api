@@ -2,13 +2,13 @@ using Boilerplate.Application.Usecases.CreateProject;
 using Boilerplate.Application.Usecases.GetProjects;
 using Boilerplate.Application.Usecases.GetProjectById;
 using Microsoft.AspNetCore.Mvc;
+using Boilerplate.Api.Controllers.Shared;
 
 namespace Boilerplate.Api.Controllers;
 
 [ApiVersion("1.0")]
-[ApiController]
 [Route("api/v1/projects")]
-public class ProjectController : ControllerBase
+public class ProjectController : ApiController
 {
     #region Ctors
     private readonly ICreateProject _createProject;
@@ -31,16 +31,16 @@ public class ProjectController : ControllerBase
     /// <param name="CreateProjectOutput">Project data to be created</param>
     /// <returns>201 Created if successful, 400 Bad Request if validation fails</returns>
     [HttpPost]
-    [ProducesResponseType(typeof(CreateProjectOutput), StatusCodes.Status201Created)]
-    [ProducesResponseType(typeof(List<string>), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(CustonResult), StatusCodes.Status201Created)]
+    [ProducesResponseType(typeof(CustonResult), StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> Post(CreateProjectInput input)
     {
         var result = await _createProject.Execute(input);
 
         if (result.IsError)
-            return BadRequest(result.Errors);
+            return ResponseBadRequest(result.FirstError.ToString());
 
-        return Created("api/project", result.Value);
+        return ResponseCreated(result.Value);
     }
     
     /// <summary>
@@ -49,11 +49,11 @@ public class ProjectController : ControllerBase
     /// <returns>200 Ok if successful</returns>    
     [HttpGet]
     [Route("pageNumber/{pageNumber:int}/pageSize/{pageSize:int}")]
-    [ProducesResponseType(typeof(GetProjectsOutput), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(CustonResult), StatusCodes.Status200OK)]
     public async Task<IActionResult> Get(int pageNumber, int pageSize)
     {
         var result = await _getProjects.Execute(pageNumber, pageSize);
-        return Ok(result);
+        return ResponseOk(result.Value);
     }
 
     /// <summary>
@@ -63,15 +63,15 @@ public class ProjectController : ControllerBase
     /// <returns>200 Ok if successful</returns>
     [HttpGet]
     [Route("{id}")]
-    [ProducesResponseType(typeof(GetProjectByIdOutput), StatusCodes.Status200OK)]
-    [ProducesResponseType(typeof(List<string>), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(CustonResult), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(CustonResult), StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> GetById(Guid id)
     {
         var result = await _getProjectById.Execute(id);
 
         if(result.IsError)
-            return BadRequest(result.Errors);
+            return ResponseBadRequest(result.FirstError.ToString());
 
-        return Ok(result.Value);
+        return ResponseOk(result.Value);
     }
 }
