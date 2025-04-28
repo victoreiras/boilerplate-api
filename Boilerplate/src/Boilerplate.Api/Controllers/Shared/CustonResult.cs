@@ -20,6 +20,6 @@ public class CustonResult
 
     public HttpStatusCode HttpStatusCode { get; private set; }
     public bool Success { get; private set; }
-    public object Data { get; private set; }
+    public object? Data { get; private set; }
     public IEnumerable<string> Errors { get; private set; } = Enumerable.Empty<string>();    
 }

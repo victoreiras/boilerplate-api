@@ -31,18 +31,18 @@ public abstract class ApiController : ControllerBase
     protected IActionResult ResponseBadRequest(string errorMessage) =>
         Response(HttpStatusCode.BadRequest, errorMessage);
 
-    protected new JsonResult Response(HttpStatusCode statusCode, object data, string errorMessage)
+    protected new JsonResult Response(HttpStatusCode statusCode, object? data, string? errorMessage)
     {
-        CustonResult result = null;
+        CustonResult? result = null;
 
         if(string.IsNullOrWhiteSpace(errorMessage))
         {
             var success = statusCode.IsSuccess();
 
-            if(data != null)
+            if (data != null)
                 result = new CustonResult(statusCode, success, data);
             else
-                result = new CustonResult(statusCode, success);            
+                result = new CustonResult(statusCode, success);
         }
         else
         {
