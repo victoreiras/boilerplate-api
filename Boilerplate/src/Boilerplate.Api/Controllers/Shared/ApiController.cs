@@ -1,5 +1,6 @@
 using System.Net;
 using Boilerplate.Api.Extensions;
+using Boilerplate.Api.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Boilerplate.Api.Controllers.Shared;

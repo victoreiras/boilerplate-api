@@ -3,6 +3,7 @@ using Boilerplate.Application.Usecases.GetProjects;
 using Boilerplate.Application.Usecases.GetProjectById;
 using Microsoft.AspNetCore.Mvc;
 using Boilerplate.Api.Controllers.Shared;
+using Boilerplate.Api.Models;
 
 namespace Boilerplate.Api.Controllers;
 

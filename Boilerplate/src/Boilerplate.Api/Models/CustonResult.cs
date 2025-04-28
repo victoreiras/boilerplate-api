@@ -1,7 +1,6 @@
 using System.Net;
 
-namespace Boilerplate.Api.Controllers.Shared;
-
+namespace Boilerplate.Api.Models;
 public class CustonResult
 {
     public CustonResult(HttpStatusCode httpStatusCode, bool success)
