@@ -1,3 +1,5 @@
+using Boilerplate.Domain.Entities;
+
 namespace Boilerplate.Application.Usecases.GetProjectById;
 
 public record GetProjectByIdOutput(
@@ -5,5 +7,8 @@ public record GetProjectByIdOutput(
     string Name,
     string Description,
     DateOnly BeginDate,
-    DateOnly EndDate
+    DateOnly EndDate,
+
+    //TODO: Não utilizar entidade
+    List<User>? Users
 );
