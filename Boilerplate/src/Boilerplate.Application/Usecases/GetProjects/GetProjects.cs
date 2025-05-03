@@ -1,5 +1,6 @@
 using Boilerplate.Application.Repositories;
 using Boilerplate.Application.Common.Models;
+using ErrorOr;
 
 namespace Boilerplate.Application.Usecases.GetProjects;
 
@@ -14,7 +15,7 @@ public class GetProjects : IGetProjects
     }
     #endregion
 
-    public async Task<PagedResult<GetProjectsOutput>> Execute(int pageNumber, int pageSize)
+    public async Task<ErrorOr<PagedResult<GetProjectsOutput>>> Execute(int pageNumber, int pageSize)
     {        
         var (projects, total) = await _projectRepository.GetActives(pageNumber, pageSize);        
 

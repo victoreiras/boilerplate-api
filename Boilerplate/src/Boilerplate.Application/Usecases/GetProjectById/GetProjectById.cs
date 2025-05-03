@@ -19,7 +19,8 @@ public class GetProjectById : IGetProjectById
         if(project is null)
             return Error.Failure("Project not found");
 
-        var result = new GetProjectByIdOutput(project.Id, project.Name, project.Description, project.BeginDate, project.EndDate);
+        //TODO: Implementar retorno de Users
+        var result = new GetProjectByIdOutput(project.Id, project.Name, project.Description, project.BeginDate, project.EndDate, null);
 
         return result;
     }

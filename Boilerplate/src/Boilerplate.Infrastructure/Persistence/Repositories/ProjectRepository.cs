@@ -58,4 +58,15 @@ public class ProjectRepository : IProjectRepository
 
         return project;
     }
+
+    public async Task AddUser(Project project)
+    {
+        _db.Projects.Update(project);
+        await _db.SaveChangesAsync();        
+    }
+
+    public async Task<User?> GetUserById(Guid userId)
+    {
+        return await _db.Users.FirstOrDefaultAsync(x => x.Id == userId);
+    }
 }
