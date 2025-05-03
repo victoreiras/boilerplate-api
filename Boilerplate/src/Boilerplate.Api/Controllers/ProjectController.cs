@@ -6,8 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 namespace Boilerplate.Api.Controllers;
 
 [ApiVersion("1.0")]
-[ApiController]
 [Route("api/v1/projects")]
+[ApiController]
 public class ProjectController : ControllerBase
 {
     #region Ctors
