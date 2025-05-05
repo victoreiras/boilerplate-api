@@ -5,28 +5,33 @@ namespace Boilerplate.Domain.Entities;
 
 public class User
 {
-    private User(string name, int age, UserRole role)
+    private User(string name, string email, string password, UserRole role)
     {
         Id = Guid.NewGuid();
-        Name = Name;
-        Age = age;
+        Name = name;
+        Email = email;
+        Password = password;
         Role = role;
     }
 
-    public Guid Id { get; private set; }
+    public Guid Id { get; set; }
     public string Name { get; private set; }
-    public int Age { get; private set; }
+    public string Email { get; private set; }
+    public string Password { get; private set; }
     public UserRole Role { get; private set; }
     public List<Project>? Projects { get; private set; } = new List<Project>();
 
-    public static ErrorOr<User> Create(string name, int age, UserRole role)
+    public static ErrorOr<User> Create(string name, string email, string password, UserRole role)
     {
         if(string.IsNullOrWhiteSpace(name))
             return Error.Failure("Name not valid");
 
-        if(age == 0)
-            return Error.Failure("Age not valid");
+        if(string.IsNullOrWhiteSpace(email))
+            return Error.Failure("Email not valid");
 
-        return new User(name, age, role);
+        if (string.IsNullOrWhiteSpace(password))
+            return Error.Failure("Password not valid");
+
+        return new User(name, email, password, role);
     }
 }

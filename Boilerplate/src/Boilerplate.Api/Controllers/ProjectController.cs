@@ -4,9 +4,11 @@ using Boilerplate.Application.Usecases.GetProjectById;
 using Microsoft.AspNetCore.Mvc;
 using Boilerplate.Api.Controllers.Shared;
 using Boilerplate.Api.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Boilerplate.Api.Controllers;
 
+[Authorize]
 [ApiVersion("1.0")]
 [Route("api/v1/projects")]
 public class ProjectController : ApiController

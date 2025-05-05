@@ -4,13 +4,13 @@ namespace Boilerplate.Application.Repositories;
 
 public interface IProjectRepository
 {
-    Task Create(Project project);
+    Task CreateAsync(Project project);
 
-    Task<Project?> GetById(Guid id);
+    Task<Project?> GetByIdAsync(Guid id);
 
-    Task<(List<Project> projects, int total)> GetActives(int pageNumber, int pageSize);
+    Task<(List<Project> projects, int total)> GetActivesAsync(int pageNumber, int pageSize);
 
-    Task AddUser(Project project);
+    Task AddUserAsync(Project project);
 
-    Task<User?> GetUserById(Guid userId);
+    Task<User?> GetUserByIdAsync(Guid userId);
 }

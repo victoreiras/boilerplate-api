@@ -14,8 +14,8 @@ public class AddUserAProject : IAddUserAProject
 
     public async Task<ErrorOr<AddUserAProjectOutput>> Execute(AddUserAProjectInput input)
     {
-        var project = await _projectRepository.GetById(input.projectId);
-        var user = await _projectRepository.GetUserById(input.userId);
+        var project = await _projectRepository.GetByIdAsync(input.projectId);
+        var user = await _projectRepository.GetUserByIdAsync(input.userId);
 
         if(project is null)
             return Error.Failure("Project not found");
@@ -25,7 +25,7 @@ public class AddUserAProject : IAddUserAProject
 
         project.Users?.Add(user);
 
-        await _projectRepository.AddUser(project);
+        await _projectRepository.AddUserAsync(project);
 
         return new AddUserAProjectOutput(input.projectId, input.userId);
     }

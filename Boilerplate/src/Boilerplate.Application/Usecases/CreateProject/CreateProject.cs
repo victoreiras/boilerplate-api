@@ -26,7 +26,7 @@ public class CreateProject : ICreateProject
         if (project.IsError)
             return project.Errors;
 
-        await _projectRepository.Create(project.Value);
+        await _projectRepository.CreateAsync(project.Value);
 
         return new CreateProjectOutput(project.Value.Id);
     }

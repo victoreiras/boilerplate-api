@@ -14,7 +14,7 @@ public class GetProjectById : IGetProjectById
 
     public async Task<ErrorOr<GetProjectByIdOutput>> Execute(Guid id)
     {
-        var project = await _projectRepository.GetById(id);
+        var project = await _projectRepository.GetByIdAsync(id);
 
         if(project is null)
             return Error.Failure("Project not found");

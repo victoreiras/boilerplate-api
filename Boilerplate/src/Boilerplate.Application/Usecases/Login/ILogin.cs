@@ -4,5 +4,5 @@ namespace Boilerplate.Application.Usecases.Login;
 
 public interface ILogin
 {
-    Task<ErrorOr<LoginOutput>> Login(LoginInput input);
+    Task<ErrorOr<LoginOutput>> Execute(LoginInput input);
 }

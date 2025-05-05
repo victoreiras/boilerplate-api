@@ -1,4 +1,5 @@
-﻿
+﻿using Boilerplate.Application.ExternalServices;
+using Boilerplate.Application.Repositories;
 using ErrorOr;
 
 namespace Boilerplate.Application.Usecases.Login;
@@ -8,20 +9,20 @@ public class Login : ILogin
     private readonly IUserRepository _userRepository;
     private readonly IJwtService _jwtService;
 
-    public Login(IJwtService jwtService, IUserRepository userRepository)
+    public Login(IUserRepository userRepository, IJwtService jwtService)
     {
-        _jwtService = jwtService;
         _userRepository = userRepository;
+        _jwtService = jwtService;        
     }
 
-    public async Task<ErrorOr<LoginOutput>> Login(LoginInput input)
+    public async Task<ErrorOr<LoginOutput>> Execute(LoginInput input)
     {
-        var user = await _userRepository.Get(input.email, input.password);
+        var user = await _userRepository.GetAsync(input.email, input.password);
 
         if (user == null)
             return Error.Failure("User Not Found");
 
-        var token = await _jwtService.GenerateTokenAsync(user);
+        var token = _jwtService.Create(user);
 
         return new LoginOutput(token);
     }

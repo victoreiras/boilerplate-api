@@ -45,7 +45,7 @@ public class CreateProjectTests : IDisposable
 
         var result = await _createProject.Execute(createProjectInput);
 
-        var projectCreated = await _projectRepository.GetById(result.Value.Id);
+        var projectCreated = await _projectRepository.GetByIdAsync(result.Value.Id);
 
         result.IsError.Should().BeFalse();
         projectCreated?.Id.Should().NotBeEmpty();

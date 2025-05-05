@@ -17,7 +17,7 @@ public class GetProjects : IGetProjects
 
     public async Task<ErrorOr<PagedResult<GetProjectsOutput>>> Execute(int pageNumber, int pageSize)
     {        
-        var (projects, total) = await _projectRepository.GetActives(pageNumber, pageSize);        
+        var (projects, total) = await _projectRepository.GetActivesAsync(pageNumber, pageSize);        
 
         return new PagedResult<GetProjectsOutput>
         {

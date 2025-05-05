@@ -1,7 +1,11 @@
 using System.Reflection;
+using System.Text;
 using Boilerplate.Api.Configurations;
 using Boilerplate.Api.Middlewares;
+using Boilerplate.Infrastructure.Configurations;
 using Boilerplate.Infrastructure.Persistence.Context;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
 using Scalar.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -26,6 +30,32 @@ builder.Services.AddRepositories();
 builder.Services.AddHealthChecks()
     .AddDbContextCheck<AppDbContext>("sqlite", tags: new[] { "db", "ready" });
 
+builder.Services.Configure<JwtConfig>(
+    builder.Configuration.GetSection("JwtConfig"));
+
+
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+}).AddJwtBearer(options =>
+{
+    var key = builder.Configuration["JwtConfig:PrivateKey"];
+
+    options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+    {
+        ValidateLifetime = true,
+        ClockSkew = TimeSpan.Zero,
+        ValidateIssuer = true,
+        ValidIssuer = "Issuer",
+        ValidateAudience = true,
+        ValidAudience = "Audience",
+        ValidateIssuerSigningKey = true,
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key))
+    };
+});
+builder.Services.AddAuthorization();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -45,6 +75,7 @@ app.UseMiddleware<ExceptionMiddleware>();
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

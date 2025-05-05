@@ -20,7 +20,7 @@ public class ProjectRepository : IProjectRepository
     }
     #endregion
 
-    public async Task Create(Project project)
+    public async Task CreateAsync(Project project)
     {
         await _db.Projects.AddAsync(project);
         await _db.SaveChangesAsync();
@@ -28,7 +28,7 @@ public class ProjectRepository : IProjectRepository
         _cache.Set($"project-{project.Id}", project);
     }
 
-    public async Task<(List<Project> projects, int total)> GetActives(int pageNumber, int pageSize)
+    public async Task<(List<Project> projects, int total)> GetActivesAsync(int pageNumber, int pageSize)
     {        
         var query = _db.Projects
             .AsNoTracking()
@@ -45,7 +45,7 @@ public class ProjectRepository : IProjectRepository
         return (projects, total);
     }
 
-    public async Task<Project?> GetById(Guid id)
+    public async Task<Project?> GetByIdAsync(Guid id)
     {
         var key = $"project-{id}";
 
@@ -59,13 +59,13 @@ public class ProjectRepository : IProjectRepository
         return project;
     }
 
-    public async Task AddUser(Project project)
+    public async Task AddUserAsync(Project project)
     {
         _db.Projects.Update(project);
         await _db.SaveChangesAsync();        
     }
 
-    public async Task<User?> GetUserById(Guid userId)
+    public async Task<User?> GetUserByIdAsync(Guid userId)
     {
         return await _db.Users.FirstOrDefaultAsync(x => x.Id == userId);
     }

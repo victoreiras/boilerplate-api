@@ -7,10 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Persistence\MongoDb\Repositories\" />
-    <Folder Include="Persistence\Sql\Contexts\Mappings\" />
-    <Folder Include="Persistence\Sql\Migrations\" />
-    <Folder Include="Persistence\Sql\Respositories\" />
+    <Compile Remove="Persistence\MongoDb\**" />
+    <Compile Remove="Persistence\Sql\**" />
+    <EmbeddedResource Remove="Persistence\MongoDb\**" />
+    <EmbeddedResource Remove="Persistence\Sql\**" />
+    <None Remove="Persistence\MongoDb\**" />
+    <None Remove="Persistence\Sql\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -19,6 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="9.0.4" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.4">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
